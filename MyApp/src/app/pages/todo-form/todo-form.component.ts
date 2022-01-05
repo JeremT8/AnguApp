@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TodoDataInterface } from 'src/app/models/todo.model';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoFormComponent implements OnInit {
 
-  constructor() { }
+  userInput: TodoDataInterface = {
+    titre: '',
+    detail: ''
+  };
+
+  constructor(private todoListService: TodoService, private router: Router) {
+       }
 
   ngOnInit(): void {
   }
 
-}
+  validateForm(): void {
+    this.todoListService.addTodo(this.userInput);
+    this.router.navigate(['/todolist']);
+    } 
+  }
