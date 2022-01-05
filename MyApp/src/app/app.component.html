@@ -7,7 +7,9 @@
         </p>
       <nav class="mb-4 d-flex justify-content-end">
         
-        <button class="btn btn-sm btn-primary" routerLink="/login">Connexion</button>
+        <button class="btn btn-sm btn-primary" routerLink="/login" *ngIf="! security.user.isAuthentificated;">Connexion</button>
+        <button class="btn btn-sm btn-primary" routerLink="/login" *ngIf="security.user.isAuthentificated;" (click)="security.logout()">Deconnexion</button>
+
       </nav>
       <router-outlet></router-outlet>
     </div>
