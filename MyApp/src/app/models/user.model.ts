@@ -1,10 +1,10 @@
 export interface UserDataInterface {
 	userName: string;
 	login: string;
+	password?: string;
 }
 
 export interface UserInterface extends UserDataInterface {
-	password?: string;
 	isAuthentificated?: boolean;
 	greet(): string;
 }

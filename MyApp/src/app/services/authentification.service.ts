@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, UserInterface } from '../models/user.model';
+import { User, UserDataInterface, UserInterface } from '../models/user.model';
 
 export interface CredentialInterface {
   login: string;
@@ -13,20 +13,30 @@ export class AuthentificationService {
 
   user: UserInterface;
 
+  userList: UserDataInterface[] = [
+    {login: 'jerem', userName: 'jShaaqx', password: '123'},
+    {login: 'jerem1', userName: 'jShaaqx1', password: '123'},
+    {login: 'jerem2', userName: 'jShaaqx2', password: '123'},
 
+  ]
 
   constructor() {
     this.user = new User();
    }
 
+   findUser(credentials: CredentialInterface): UserDataInterface | undefined {
+    return this.userList.find(item => item.login == credentials.login && item.password == credentials.password)
+   }
+
   authentificate(credentials: CredentialInterface)  {
-    const isAuthenticated =  credentials.login === 'user' && credentials.password === '123';
+
+    const user =this.findUser(credentials);
+    
+
+    const isAuthenticated =  user != undefined;
 
     if (isAuthenticated) {
-      this.user = new User({
-        userName: 'Default User',
-        login: credentials.login
-      });
+      this.user = new User(user);
     }
     return isAuthenticated;
   }
