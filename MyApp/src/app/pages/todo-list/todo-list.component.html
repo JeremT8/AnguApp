@@ -1,0 +1,19 @@
+<div class="p-4">
+  <div>
+    <!-- <p class="">{{ item.titre }}   {{ item.detail}}</p> -->
+  </div>
+  <table class="table table-striped">
+    <thead class="">
+	<tr>
+		<th>Titre</th>
+		<th>Detail</th>
+	</tr>
+    </thead>
+    <tbody>
+	    <tr *ngFor="let item of todoList">
+		    <td> {{ item.titre }}</td>
+		    <td> {{ item.detail }}</td>
+	    </tr>
+    </tbody>
+  </table>
+</div>

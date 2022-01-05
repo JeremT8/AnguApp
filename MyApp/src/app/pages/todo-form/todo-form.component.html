@@ -1,0 +1,13 @@
+<div class="container-fluid p-4">
+	<div class="mb-2">
+		<label for="">Titre</label>
+		<input type="text" class="form-control"
+		[(ngModel)]="userInput.titre">
+	</div>
+	<div class="mb-2">
+		<label for="">Detail</label>
+		<input type="text" class="form-control"
+		[(ngModel)]="userInput.detail">
+	</div>
+	<button class="btn btn-primary" (click)='validateForm()'>Ajouter une tâche</button>
+</div>
