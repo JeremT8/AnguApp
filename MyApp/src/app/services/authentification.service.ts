@@ -50,6 +50,4 @@ export class AuthentificationService {
     this.router.navigate(['/home']);
   }
 
-  
-
 }
