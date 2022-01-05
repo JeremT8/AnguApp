@@ -11,7 +11,7 @@ export interface UserInterface extends UserDataInterface {
 
 
 export class User implements UserInterface {
-	userName: string = 'anonyme';
+	userName: string = 'Invité';
 	login: string = '';
 	password?: string | undefined;
 	isAuthentificated?: boolean | undefined = false;
@@ -25,6 +25,6 @@ export class User implements UserInterface {
 	}
 
 	greet(): string { 
-		return `Hello ${this.userName}`;
+		return `Bonjour ${this.userName}`;
 	}
 }
