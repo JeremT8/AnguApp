@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User, UserDataInterface, UserInterface } from '../models/user.model';
 import { NotificationService } from './notification.service';
 
@@ -21,7 +22,7 @@ export class AuthentificationService {
 
   ]
 
-  constructor(private notification: NotificationService) {
+  constructor(private notification: NotificationService, private router: Router) {
     this.user = new User();
    }
 
@@ -45,6 +46,8 @@ export class AuthentificationService {
 
   logout(): void {
     this.user = new User();
+    this.notification.setMessage('Vous allez être déconnecter, redirection en cours... ')
+    this.router.navigate(['/home']);
   }
 
   
