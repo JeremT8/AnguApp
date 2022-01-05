@@ -1,15 +1,22 @@
 <div class="p-2">
-	<h2 class="mb-2"> Authentication </h2>
+	<h2 class="mb-2"> Authentification </h2>
+
+	<div class="alert alert-danger mt-2 mb-2 p-2" 
+	*ngIf="isSubmitted && ! isAuthentificated">
+		Les informations de connexion sont incorrectes
+	</div>
 	<div class="mb-2">
 		<label for="" class="form-label"> Identifiant </label>
-		<input class="form-control" type="text" id="">
+		<input class="form-control" type="text" id=""
+		[(ngModel)]="userInput.login">
 	</div>
 	<div class="mb-2">
 		<label for="" class="form-label"> Mot de Passe </label>
-		<input class="form-control" type="password" id="">
+		<input class="form-control" type="password" id=""
+		[(ngModel)]="userInput.password">
 	</div>
 
-	<button class="btn btn-primary">
+	<button class="btn btn-primary" (click)="validateForm()">
 		Valider
 	</button>
 </div>
