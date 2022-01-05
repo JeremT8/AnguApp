@@ -2,8 +2,12 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-8 p-4">
+      <p class="navbar-text me-2">
+          {{ security.user.greet() }}
+        </p>
       <nav class="mb-4 d-flex justify-content-end">
-        <button class="btn btn-primary" routerLink="/login">Connexion</button>
+        
+        <button class="btn btn-sm btn-primary" routerLink="/login">Connexion</button>
       </nav>
       <router-outlet></router-outlet>
     </div>
