@@ -5,14 +5,14 @@
   <table class="table table-striped">
     <thead class="">
 	<tr>
-		<th>Titre</th>
-		<th>Detail</th>
+		<th>Status</th>
+		<th>Tâche</th>
 	</tr>
     </thead>
     <tbody>
-	    <tr *ngFor="let item of todoList">
-		    <td> {{ item.titre }}</td>
-		    <td> {{ item.detail }}</td>
+	    <tr *ngFor="let task of tasksService.taskList">
+		    <td><input type="checkbox" [checked]="task.done"></td>
+		    <td> {{ task.taskName }} </td>
 	    </tr>
     </tbody>
   </table>
