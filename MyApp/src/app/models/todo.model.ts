@@ -1,27 +1,26 @@
 export interface TodoDTOInterface {
   id?: number;
-  taskName: string;
   done: boolean;
+  taskName: string;
+  user: string
 }
 
 export class Todo{
-    id: number | undefined;
-    taskName: string = '';
-    done: boolean = false;
+  id: number | undefined;
+  done: boolean = false;
+  taskName: string ='';
+  user: string = '';
 
-  constructor(data: TodoDTOInterface | null = null) {
-    if(data) {
-      this.taskName = data.taskName;
-      this.done = data.done;
-      this.id = data.id || new Date().getTime()
-    } else {
-      this.id = new Date().getTime();
-    }
+  constructor(data: TodoDTOInterface | null = null){
+      if (data) {
+          this.taskName = data.taskName;
+          this.done = data.done;
+          this.user = data.user;
+          this.id = data.id || new Date().getTime();
 
+      } else {
+          this.id= new Date().getTime();
+      }
 
-    
   }
-
-	  }
-	 
-
+}

@@ -3,16 +3,22 @@
     <!-- <p class="">{{ item.titre }}   {{ item.detail}}</p> -->
   </div>
   <table class="table table-striped">
-    <thead class="">
+    <thead>
 	<tr>
 		<th>Status</th>
 		<th>Tâche</th>
+		<th>Auteur</th>
+		<th>Supprimer</th>
+		<th>Modifier</th>
+
 	</tr>
     </thead>
     <tbody>
 	    <tr *ngFor="let task of tasksService.taskList">
 		    <td><input type="checkbox" [checked]="task.done"></td>
 		    <td> {{ task.taskName }} </td>
+		    <td> {{ task.user }} </td>
+
         <td>
           <button class="btn btn-danger btn-sm" (click)="tasksService.deleteTask(task.id)">X</button>
         </td>
