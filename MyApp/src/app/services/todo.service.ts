@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
+import { LocalStorageService } from 'ngx-webstorage';
+
+
+const TODO_KEY = 'todos'
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +21,21 @@ export class TodoService {
   search: string = "";
 
 
-  constructor() {
+  constructor(private storage: LocalStorageService) {
+    this.loadFromStorage();
     this.filterTask();
-    
+   }
+
+   loadFromStorage(): void {
+    const rawData = this.storage.retrieve(TODO_KEY)
+    if(rawData) {
+      const data = JSON.parse(rawData);
+      this.taskList = data;
+    }
+   }
+
+   persist() {
+     this.storage.store(TODO_KEY, JSON.stringify(this.taskList))
    }
 
 
@@ -36,6 +52,7 @@ export class TodoService {
   deleteTask(id: number | undefined): void {
     const index = this.taskList.findIndex(item => item.id == id);
     this.taskList.splice(index, 1);
+    this.persist();
   }
 
   saveTask(data: Todo): void {
@@ -43,6 +60,7 @@ export class TodoService {
     if(! taskExist) {
         this.taskList.push(data)
       }
+      this.persist();
   }
 
   getOneById(id: number): Todo {
