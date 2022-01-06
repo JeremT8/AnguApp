@@ -10,6 +10,7 @@ export class SelectUserComponent implements OnInit {
 
 
   @Input() label: string = 'Responsable';
+  @Input() firstOptionLabel: string = ''
   @Input() user: string = ''
   @Output() userChange = new EventEmitter();
   
