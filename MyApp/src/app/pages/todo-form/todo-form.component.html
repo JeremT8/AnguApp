@@ -1,12 +1,14 @@
 <div class="container-fluid p-4">
 	<div class="mb-2">
-		<label for="">Titre</label>
-		<input type="text" class="form-control">
+		<label for="">Nom de la tâche</label>
+		<input type="text" class="form-control"
+		[(ngModel)]="task.taskName">
 		
 	</div>
-	<div class="mb-2">
-		<label for="">Detail</label>
-		<input type="text" class="form-control">
+	<div class="mb-2 form-check">
+		<input type="checkbox" class="form-check-input"
+		[(ngModel)]="task.done">
+		<label for="" class="form-check-label">Terminée</label>
 		
 	</div>
 	<button class="btn btn-primary">Ajouter une tâche</button>
