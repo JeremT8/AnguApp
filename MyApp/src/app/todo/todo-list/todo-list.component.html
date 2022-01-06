@@ -1,6 +1,8 @@
 <div class="p-4">
   <div>
     <!-- <p class="">{{ item.titre }}   {{ item.detail}}</p> -->
+    <app-select-user [label]="'Recherche'" [(user)]="tasksService.search" firstOptionLabel="Choisissez un auteur" (change)="tasksService.filterTask()" ></app-select-user>
+    <!-- <button class="btn btn-success btn-sm" (click)="tasksService.filterTask()">Filtrer</button> -->
   </div>
   <table class="table table-striped">
     <thead>
@@ -14,7 +16,7 @@
 	</tr>
     </thead>
     <tbody>
-	    <tr *ngFor="let task of tasksService.taskList">
+	    <tr *ngFor="let task of tasksService.filteredTaskList">
 		    <td><input type="checkbox" [checked]="task.done"></td>
 		    <td> {{ task.taskName }} </td>
 		    <td> {{ task.user }} </td>
