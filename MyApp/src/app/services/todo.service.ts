@@ -16,19 +16,31 @@ export class TodoService {
    }
 
 
-   getNewTodo(): Todo {
+  getNewTodo(): Todo {
      return new Todo();
    }
 
-   addTask(data: Todo): void {
-     this.taskList.push(data);
+  addTask(data: Todo | undefined): void {
+     if(data) {
+       this.taskList.push(data);
+     }
    }
 
-   deleteTask(id: number | undefined): void {
+  deleteTask(id: number | undefined): void {
     const index = this.taskList.findIndex(item => item.id == id);
     this.taskList.splice(index, 1);
   }
 
-  
+  saveTask(data: Todo): void {
+   const taskExist = this.taskList.find(item => item.id == data.id);
+    if(! taskExist) {
+        this.taskList.push(data)
+      }
+  }
+
+  getOneById(id: number): Todo {
+    const task =  this.taskList.find(item => item.id == id);
+    return task || new Todo();
+  }
    
 }
