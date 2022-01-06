@@ -13,6 +13,12 @@
 	    <tr *ngFor="let task of tasksService.taskList">
 		    <td><input type="checkbox" [checked]="task.done"></td>
 		    <td> {{ task.taskName }} </td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="tasksService.deleteTask(task.id)">X</button>
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm">Mettre à jour</button>
+        </td>
 	    </tr>
     </tbody>
   </table>
