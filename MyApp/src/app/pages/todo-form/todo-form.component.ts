@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Todo, TodoDTOInterface } from 'src/app/models/todo.model';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -12,15 +13,22 @@ export class TodoFormComponent implements OnInit {
 
   task: Todo;
 
-  constructor(private taskService: TodoService, private router: Router) {
-    this.task = this.taskService.getNewTodo()
+  update: boolean = false;
+
+  constructor(private taskService: TodoService, private router: Router, private currentRoute: ActivatedRoute, public security: AuthentificationService) {
+    this.task = this.taskService.getNewTodo();
+    
+    currentRoute.params.subscribe( params => {
+      const id = params['id'];
+      this.task = this.taskService.getOneById(id);
+    })
   }
 
   ngOnInit(): void {
   }
 
   validateForm() {
-    this.taskService.addTask(this.task);
+    this.taskService.saveTask(this.task);
     this.router.navigate(['/todolist']);
   }
 }
