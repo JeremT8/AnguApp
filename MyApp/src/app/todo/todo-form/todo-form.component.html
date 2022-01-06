@@ -10,13 +10,6 @@
 		[(ngModel)]="task.done">
 		<label for="" class="form-check-label">Terminée</label>	
 	</div>
-	<div class="mb-2">
-		<label for="">Responsable</label>
-		<select class="form-select"
-		[(ngModel)]="task.user">
-			<option *ngFor="let user of security.userList" [value]="user.login"> {{ user.userName }} </option>
-	</select>
-		
-	</div>
+	<app-select-user [(user)]="task.user"></app-select-user>
 	<button class="btn btn-primary" (click)="validateForm()">Ajouter une tâche</button>
 </div>

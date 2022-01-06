@@ -1,0 +1,6 @@
+<div class="mb-2">
+	<label for="">{{ label }}</label>
+	<select class="form-select" [(ngModel)]="user" (change)="onUserSelect()">
+		<option *ngFor="let user of security.userList" [value]="user.login"> {{ user.userName }} </option>
+</select>
+</div>

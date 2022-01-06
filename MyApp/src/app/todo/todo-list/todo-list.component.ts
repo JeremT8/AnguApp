@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoListComponent implements OnInit {
   
-  constructor(public tasksService: TodoService) {}
+  constructor(public tasksService: TodoService, public security: AuthentificationService) {}
 
   ngOnInit(): void {
 

@@ -8,8 +8,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthentificationService } from './services/authentification.service';
 import { SecureComponent } from './pages/secure/secure.component';
-import { TodoListComponent } from './pages/todo-list/todo-list.component';
-import { TodoFormComponent } from './pages/todo-form/todo-form.component';
+import { TodoListComponent } from './todo/todo-list/todo-list.component';
+import { TodoFormComponent } from './todo/todo-form/todo-form.component';
+import { SelectUserComponent } from './todo/select-user/select-user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TodoFormComponent } from './pages/todo-form/todo-form.component';
     LoginComponent,
     SecureComponent,
     TodoListComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    SelectUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 <div class="p-4">
   <div>
     <!-- <p class="">{{ item.titre }}   {{ item.detail}}</p> -->
+    <app-select-user [label]="'Recherche'" [(user)]="tasksService.search"></app-select-user>
   </div>
   <table class="table table-striped">
     <thead>

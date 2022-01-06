@@ -11,6 +11,8 @@ export class TodoService {
     new Todo({taskName: "Apprendre l'espagnol", done: false, id: 2, user: 'jerem'}),
   ];
   
+
+  search: string = "";
   constructor() {
     
    }
@@ -42,5 +44,7 @@ export class TodoService {
     const task =  this.taskList.find(item => item.id == id);
     return task || new Todo();
   }
+
+  
    
 }
