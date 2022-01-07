@@ -1,15 +1,19 @@
+
+
 <div class="container-fluid p-4">
+	<form #taskForm="ngForm" (ngSubmit)="validateForm(taskForm)">
 	<div class="mb-2">
 		<label for="">Nom de la tâche</label>
 		<input type="text" class="form-control"
-		[(ngModel)]="task.taskName">
+		ngModel  name="taskName" required>
 		
 	</div>
 	<div class="mb-2 form-check">
 		<input type="checkbox" class="form-check-input"
-		[(ngModel)]="task.done">
+		ngModel name="done">
 		<label for="" class="form-check-label">Terminée</label>	
 	</div>
-	<app-select-user [(user)]="task.user"></app-select-user>
-	<button class="btn btn-primary" (click)="validateForm()">Ajouter une tâche</button>
+	<!-- <app-select-user [(user)]="task.user"></app-select-user> -->
+	<button class="btn btn-primary" type="submit">Ajouter une tâche</button>
+</form>
 </div>
