@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../models/todo.model';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Todo } from '../models/todo.model';
+import { AuthentificationService } from './authentification.service';
+import { NotificationService } from './notification.service';
 
-
-const TODO_KEY = 'todos'
+const TODO_KEY = 'todos';
 
 @Injectable({
   providedIn: 'root'
@@ -11,69 +12,72 @@ const TODO_KEY = 'todos'
 export class TodoService {
 
   taskList: Todo[] = [
-    new Todo({taskName: "Faire le menage", done: false, id: 1, user: 'jerem'}),
-    new Todo({taskName: "Apprendre l'espagnol", done: false, id: 2, user: 'jerem'}),
+    new Todo({ taskName: 'Faire le ménage', done: false, id: 1, user: 'Ada' }),
+    new Todo({ taskName: 'Apprendre le polonais', done: false, id: 2, user: 'Alan' }),
   ];
 
   filteredTaskList: Todo[] = [];
-  
 
-  search: string = "";
+  search: string = '';
 
-
-  constructor(private storage: LocalStorageService) {
+  constructor(private storage: LocalStorageService,
+              private security: AuthentificationService,
+              private notification: NotificationService) {
     this.loadFromStorage();
     this.filterTask();
-   }
+  }
 
-   loadFromStorage(): void {
-    const rawData = this.storage.retrieve(TODO_KEY)
-    if(rawData) {
+  loadFromStorage(): void {
+    const rawData = this.storage.retrieve(TODO_KEY);
+    if (rawData) {
       const data = JSON.parse(rawData);
       this.taskList = data;
-    }
-   }
+    } 
+  }
 
-   persist() {
-     this.storage.store(TODO_KEY, JSON.stringify(this.taskList))
-   }
-
+  persist() {
+    this.storage.store(TODO_KEY, JSON.stringify(this.taskList));
+  }
 
   getNewTodo(): Todo {
-     return new Todo();
-   }
+    return new Todo();
+  }
 
-  addTask(data: Todo | undefined): void {
-     if(data) {
-       this.taskList.push(data);
-     }
-   }
-
-  deleteTask(id: number | undefined): void {
-    const index = this.taskList.findIndex(item => item.id == id);
-    this.taskList.splice(index, 1);
+  saveTask(data: Todo ): void {
+    const taskExist = this.taskList.find(item => item.id == data.id);
+    if (! taskExist) {
+        this.taskList.push(data);
+    }
     this.persist();
   }
 
-  saveTask(data: Todo): void {
-   const taskExist = this.taskList.find(item => item.id == data.id);
-    if(! taskExist) {
-        this.taskList.push(data)
+  deleteTask(id: number | undefined): void {
+    const index = this.taskList.findIndex(item => item.id == id);
+    if (index >= 0) {
+      const task = this.taskList[index];
+      if (task.user == this.security.user.login) {
+        this.taskList.splice(index, 1);
+        this.persist();
+      } else {
+        this.notification.setMessage(`Vous n'avez pas les droits pour supprimer cette tâche`);
       }
-      this.persist();
+      
+    }
+    
   }
 
-  getOneById(id: number): Todo {
-    const task =  this.taskList.find(item => item.id == id);
+  getOneById(id: number): Todo{
+    const task = this.taskList.find(item => item.id == id);
     return task || new Todo();
   }
 
   filterTask(): void {
-    if(this.search) {
-      this.filteredTaskList = this.taskList.filter(item => item.user == this.search);
+    if (this.search) {
+      this.filteredTaskList = this.taskList.filter(
+        item => item.user == this.search
+      );
     } else {
       this.filteredTaskList = this.taskList;
     }
-  } 
-   
+  }
 }

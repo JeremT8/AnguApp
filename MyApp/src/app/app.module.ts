@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,6 +14,7 @@ import { TodoFormComponent } from './todo/todo-form/todo-form.component';
 import { SelectUserComponent } from './todo/select-user/select-user.component';
 
 import { AuthentificationService } from './services/authentification.service';
+import { RandomUserListComponent } from './pages/random-user-list/random-user-list.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { AuthentificationService } from './services/authentification.service';
     SecureComponent,
     TodoListComponent,
     TodoFormComponent,
-    SelectUserComponent
+    SelectUserComponent,
+    RandomUserListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    HttpClientModule
   ],
   providers: [AuthentificationService],
   bootstrap: [AppComponent]

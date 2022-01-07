@@ -16,6 +16,7 @@
         <button class="btn btn-sm me-2 btn-primary" routerLink="/secure">Page Securisé</button>
         <button class="btn btn-sm me-2 btn-primary" routerLink="/todolist">TodoList</button>
         <button class="btn btn-sm me-2 btn-primary" routerLink="/todoform">Ajouter une todo</button>
+        <button class="btn btn-sm me-2 btn-primary" routerLink="/user-list">Liste utilisateur</button>
         <button class="btn btn-sm btn-primary" routerLink="/login" *ngIf="! security.user.isAuthentificated;">Connexion</button>
         <button class="btn btn-sm btn-primary" *ngIf="security.user.isAuthentificated;" (click)="security.logout()">Deconnexion</button>
       </nav>
