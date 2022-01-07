@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Todo, TodoDTOInterface } from 'src/app/models/todo.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -27,8 +28,11 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  validateForm() {
-    this.taskService.saveTask(this.task);
-    this.router.navigate(['/todolist']);
+  validateForm(taskForm: NgForm) {
+    if (taskForm.form.valid) {
+      
+    }
+    // this.taskService.saveTask(this.task);
+    // this.router.navigate(['/todolist']);
   }
 }
