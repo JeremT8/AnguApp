@@ -1,8 +1,9 @@
 <div class="mt-3 mb-3">
 	<h4>Trier par</h4>
-	<div class="mb-2">
+	<div class="row">
+	<div class="mb-2 col">
 		<label for="" class="form-label">Nationalité</label>
-		<select name="" id="" class="form-select" [(ngModel)]="search.nat">
+		<select name="" id="" class="form-select" [(ngModel)]="randomUserService.search.nat">
 			<option value="fr">Française</option>
 			<option value="de">Allemande</option>
 			<option value="en">Anglaise</option>
@@ -15,17 +16,17 @@
 		</select>
 	</div>
 
-	<div class="mb-2">
+	<div class="mb-2 col">
 		<label for="" class="form-label">Homme</label>
-		<select name="" id="" class="form-select" [(ngModel)]="search.gender">
+		<select name="" id="" class="form-select" [(ngModel)]="randomUserService.search.gender">
 			<option value="male">Homme</option>
 			<option value="female">Femme</option>
 		</select>
 	</div>
 
-	<div class="mb-2">
+	<div class="mb-2 col">
 		<label for="" class="form-label">Nombre de resultats</label>
-		<select name="" id="" class="form-select" [(ngModel)]="search.results">
+		<select name="" id="" class="form-select" [(ngModel)]="randomUserService.search.results">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -43,13 +44,13 @@
 
 		</select>
 	</div>
+	</div>
 
-	<button class="btn btn-primary btn-sm w-100" (click)="loadUsers()">Rechercher</button>
+	<button class="btn btn-primary btn-sm w-100" (click)="randomUserService.loadUsers()">Rechercher</button>
 </div>
 
 
 <!-- {{ search | json }}  => Verification que la valeur est bien recuperer   -->
-{{ search | json }}
 
 <table class="table table-bordered table-striped">
 	<thead>
@@ -60,10 +61,18 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let user of userList">
-			<td><img [src]="user.picture.thumbnail"></td>
-			<td> {{ user.name.first }} </td>
-			<td> {{ user.name.last }} </td>
+		<tr *ngFor="let user of (randomUserService.response | async)">
+			<td><img [src]="user.picture"></td>
+			<td> {{ user.firstName }} </td>
+			<td> {{ user.name }} </td>
+			<td> {{ user.address }} </td>
+
 		</tr>
 	</tbody>
 </table>
+
+
+
+
+
+
